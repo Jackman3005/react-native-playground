@@ -50,6 +50,14 @@ const styles = StyleSheet.create({
     textRow: {
         display: 'flex',
         flexDirection: 'row',
+        ...Platform.select({
+            ios: {
+                backgroundColor: 'lightblue'
+            },
+            android: {
+                backgroundColor: 'lightgreen'
+            }
+        })
     },
     textLabel: {
         flex: 1,
