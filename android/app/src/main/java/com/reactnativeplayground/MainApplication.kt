@@ -19,7 +19,8 @@ class MainApplication : Application(), ReactApplication {
 
         override fun getPackages(): List<ReactPackage> {
             return Arrays.asList<ReactPackage>(
-                    MainReactPackage()
+                    MainReactPackage(),
+                    PlaygroundPackage()
             )
         }
 
