@@ -5,12 +5,19 @@ export default class App extends React.Component {
 
     state = {
         myString: '',
+        heavyComputation: Platform.OS === 'android' ? 'computing...' : ''
     };
 
     async componentDidMount() {
         if (Platform.OS === 'android') {
             const myString = await NativeModules.JackPlayground.addBarTo('foo');
             this.setState({myString});
+
+            NativeModules.JackPlayground.doHeavyComputation([2.5, 4, 2]).then((result) => {
+                this.setState({
+                    heavyComputation: result
+                });
+            });
         }
     }
 
@@ -18,6 +25,7 @@ export default class App extends React.Component {
         return (
             <View style={styles.container}>
                 <MyLabelValue label="myString:" value={this.state.myString}/>
+                <MyLabelValue label="2.5 * 4 * 2 =" value={this.state.heavyComputation}/>
             </View>
         );
     }
